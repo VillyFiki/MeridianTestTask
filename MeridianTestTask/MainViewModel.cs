@@ -22,6 +22,15 @@ namespace MeridianTestTask
         public Command ReadJsonCommand { get; }
 
         public Settings Settings { get; private set; }
+        public Server[] ServersList
+        {
+            get => _serversList;
+            set
+            {
+                _serversList = value; SetProperty(_serversList);
+            }
+        }
+        private Server[] _serversList;
 
         public string Result { 
             get => _result; 
@@ -72,13 +81,8 @@ namespace MeridianTestTask
             });
 
             await Task.WhenAll(tasks);
-
+            MessageBox.Show("TCP data received successfully");
             _server.ResponseList = list;
-        }
-
-        public void SendResponse()
-        {
-
         }
 
         private void ReadJson()
@@ -87,7 +91,7 @@ namespace MeridianTestTask
             {
                 var json = File.ReadAllText(OpenFileExplorer());
                 Settings = JsonConvert.DeserializeObject<Settings>(json);
-
+                ServersList = Settings.Client.ServersList;
                 IsJsonLoaded = true;
             }
             catch

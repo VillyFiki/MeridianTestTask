@@ -14,9 +14,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock Text="{Binding Result}"></TextBlock>
-        </StackPanel>
+        <DataGrid ScrollViewer.CanContentScroll="True" 
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto" IsReadOnly="True" CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" Margin="0,5,0,0" Grid.Row="0" AutoGenerateColumns="True" ItemsSource="{Binding ServersList}" >
+        </DataGrid>
         <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
 
             <Grid.ColumnDefinitions>
